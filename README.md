@@ -1,1 +1,3 @@
-This is a Incident IQ website.
+# IncidentIQ AI - "Incident Investigation & Evidence Agent"
+
+IncidentIQ AI is an enterprise-grade AI-native incident investigation platform designed for SREs, DevOps, Platform Engineers, and Incident Response teams. It ingests operational events from 10+ sources, normalizes them while preserving immutable raw evidence in PostgreSQL JSONB, performs multi-vector correlation, and executes a 10-node LangGraph AI agent pipeline to generate evidence-backed hypotheses, missing telemetry requests, and post-mortem post-incident reports.
