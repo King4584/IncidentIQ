@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ShieldCheck, Sparkles, Lock, Mail, ArrowRight, Key } from 'lucide-react';
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api/v1";
+
 export default function RootLoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState('');
@@ -21,7 +23,7 @@ export default function RootLoginPage() {
     setError('');
 
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/v1/auth/login', {
+      const res = await fetch(`${API_BASE_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
