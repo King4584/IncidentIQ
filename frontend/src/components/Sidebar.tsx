@@ -14,13 +14,12 @@ import {
   BarChart3, 
   Settings,
   Sparkles,
-  LogOut,
-  UserCheck
+  LogOut
 } from 'lucide-react';
 import { useAppStore } from '@/lib/store';
 
 const navItems = [
-  { name: 'Dashboard', href: '/', icon: Activity },
+  { name: 'Dashboard', href: '/dashboard', icon: Activity },
   { name: 'Event Ingestion', href: '/ingestion', icon: UploadCloud },
   { name: 'Incidents', href: '/incidents', icon: AlertTriangle },
   { name: 'Timeline Explorer', href: '/timeline', icon: Clock },
@@ -40,7 +39,7 @@ export default function Sidebar() {
   const handleLogout = () => {
     localStorage.removeItem('incidentiq_token');
     localStorage.removeItem('incidentiq_user');
-    router.push('/login');
+    router.push('/');
   };
 
   const activeUser = user || {
@@ -54,7 +53,7 @@ export default function Sidebar() {
     <aside className="w-64 glass-panel border-r border-slate-800 flex flex-col h-screen sticky top-0 z-40">
       {/* Brand Header */}
       <div className="p-5 border-b border-slate-800 flex items-center justify-between">
-        <Link href="/" className="flex items-center space-x-3 group">
+        <Link href="/dashboard" className="flex items-center space-x-3 group">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
             <Sparkles className="w-5 h-5 text-white" />
           </div>
@@ -71,7 +70,7 @@ export default function Sidebar() {
       <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
         {navItems.map((item) => {
           const Icon = item.icon;
-          const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
+          const isActive = pathname === item.href || (item.href !== '/dashboard' && pathname.startsWith(item.href));
           return (
             <Link
               key={item.name}

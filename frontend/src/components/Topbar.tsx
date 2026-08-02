@@ -35,7 +35,7 @@ export default function Topbar() {
     localStorage.removeItem('incidentiq_token');
     localStorage.removeItem('incidentiq_user');
     setShowProfileMenu(false);
-    router.push('/login');
+    router.push('/');
   };
 
   const mockNotifs = [
@@ -132,7 +132,7 @@ export default function Topbar() {
                 <Key className="w-3.5 h-3.5 text-slate-400" />
                 <span>API Keys & Security</span>
               </Link>
-              <Link href="/login" className="flex items-center space-x-2 px-2.5 py-2 rounded text-xs text-slate-300 hover:bg-slate-800">
+              <Link href="/" className="flex items-center space-x-2 px-2.5 py-2 rounded text-xs text-slate-300 hover:bg-slate-800">
                 <LogIn className="w-3.5 h-3.5 text-slate-400" />
                 <span>Switch Account</span>
               </Link>
