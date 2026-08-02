@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: incidentiq-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: incidentiq_db
+      POSTGRES_USER: incidentiq_user
+      POSTGRES_PASSWORD: incidentiq_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ../backend
+      dockerfile: ../docker/Dockerfile.backend
+    container_name: incidentiq-backend
+    restart: always
+    environment:
+      DATABASE_URL: postgresql+asyncpg://incidentiq_user:incidentiq_password@postgres:5432/incidentiq_db
+      SECRET_KEY: incidentiq-production-secret-key-change-in-prod-2026
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: ../docker/Dockerfile.frontend
+    container_name: incidentiq-frontend
+    restart: always
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000/api/v1
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
