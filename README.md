@@ -97,7 +97,7 @@ docker-compose up --build -d
 
 ### Vercel / Render / Railway Deployment
 - **Frontend (Vercel)**: Set Root Directory to `frontend/`, Build Command `npm run build`, Output Directory `.next`.
-- **Backend (Render / Railway)**: Set Build Command `pip install -r requirements.txt`, Start Command `python start_backend.py`. Set Environment Variables from `.env.example`.
+- **Backend (Render)**: Set Build Command `pip install -r requirements.txt`, Start Command `python start_backend.py`. Set Environment Variables from `.env.example`.
 
 ---
 
